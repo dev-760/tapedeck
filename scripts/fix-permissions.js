@@ -1,0 +1,1 @@
+const fs = require('fs'); const file = 'node_modules/expo-modules-core/android/src/main/java/expo/modules/adapters/react/permissions/PermissionsService.kt'; let content = fs.readFileSync(file, 'utf8'); content = content.replace('requestedPermissions.contains(permission)', 'requestedPermissions?.contains(permission) == true'); fs.writeFileSync(file, content);
