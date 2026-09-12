@@ -5763,7 +5763,7 @@ react-native-screens@*, "react-native-screens@>= 3.0.0", react-native-screens@3.
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
-react-native-track-player@nightly:
+react-native-track-player@^5.0.0-alpha0-nightly-359af5a12d712d3b685530aed9b9625865a25d74:
   version "5.0.0-alpha0-nightly-359af5a12d712d3b685530aed9b9625865a25d74"
   resolved "https://registry.npmjs.org/react-native-track-player/-/react-native-track-player-5.0.0-alpha0-nightly-359af5a12d712d3b685530aed9b9625865a25d74.tgz"
   integrity sha512-8IwJxiJVbk7vVLZF1rwCFgb9Nu1AqHZ8//UFyKRLNGo0ZIkvFbeCgQSkedgFfD2Hfx2tosz2kTze7hh+nLelyQ==

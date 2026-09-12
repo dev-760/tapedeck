@@ -1,0 +1,24 @@
+    private void createReactContextAndScheduleTask(final HeadlessJsTaskConfig taskConfig) {
+
+        if (DefaultNewArchitectureEntryPoint.getBridgelessEnabled()) { // new arch
+            final ReactHost reactHost = getReactHost();
+            ReactContext reactContext = reactHost.getCurrentReactContext();
+            if (reactContext != null) {
+                invokeStartTask(reactContext, taskConfig);
+            } else {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            reactHost.start().waitForCompletion();
+                            final ReactContext rc = reactHost.getCurrentReactContext();
+                            if (rc != null) {
+                                invokeStartTask(rc, taskConfig);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            }
+        } else { // old arch
