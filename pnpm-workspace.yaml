@@ -1,0 +1,2 @@
+patchedDependencies:
+  react-native-track-player: patches/react-native-track-player.patch
