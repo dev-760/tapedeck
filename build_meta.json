@@ -1,0 +1,49 @@
+{
+  "id": "04450a9c-a474-43ae-8377-0ca509d19a10",
+  "status": "ERRORED",
+  "platform": "ANDROID",
+  "error": {
+    "errorCode": "UNKNOWN_ERROR",
+    "message": "Unknown error. See logs of the Install dependencies build phase for more information."
+  },
+  "artifacts": {},
+  "fingerprint": {
+    "id": "01a097f3-1742-745c-8166-dbd55dbe6975",
+    "hash": "85eefd372945f50644854e6f113431c19aa9d587"
+  },
+  "initiatingActor": {
+    "id": "4c8ba5c1-673a-48a7-bda1-398c1890ee0b",
+    "displayName": "windsurf29"
+  },
+  "logFiles": [
+    "https://storage.googleapis.com/eas-workflows-production/logs/13a5257b-72fd-495c-80bb-fd7c8a80b337/04450a9c-a474-43ae-8377-0ca509d19a10/2026-09-12T23%3A28%3A06Z-1ca827f9-2766-40db-8ec8-96c586558c76.txt?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=www-production%40exponentjs.iam.gserviceaccount.com%2F20260912%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260912T232859Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=1c00bebb686a479c4481cd28d57de2008398e3f4cde432bdc12db4a8786ee2ba0efbe81d3e06e9040ca690ebbad90c9d251e651b7ff0f32d55bb96d140649b1ffc1fa4d591881dccc5ec30f0aed4771658d3acea75f0f7aeb07f7b219b129557a8f44f289932eac73301644d3609472baee71625e8d54f683279aee94e2dd88500a5e9017b6a0fd5b5ae27601da13ba05c5298bfe91f5f8b541e759ea159934e2cc5714dc974829cee6d4beb8d9c48157da9fc110a55c437d1de3261cdbbf6c3dcd8ce16648a3ceced510e57b0040eb3d2318bf9aebf83c8bed65cee1f5444820fa6f33e41a3f5908d6b92fdc2787b74663ed7adeb4daa3aa86a4b13ca857d0e"
+  ],
+  "app": {
+    "id": "13a5257b-72fd-495c-80bb-fd7c8a80b337",
+    "name": "tapedeck",
+    "slug": "tapedeck",
+    "ownerAccount": {
+      "id": "d4d6dec5-860b-4787-b75f-65595fca2e6b",
+      "name": "windsurf29"
+    }
+  },
+  "distribution": "INTERNAL",
+  "buildProfile": "preview",
+  "appIdentifier": "com.tapedeck.app",
+  "sdkVersion": "57.0.0",
+  "appVersion": "0.1.0",
+  "appBuildVersion": "1",
+  "gitCommitHash": "3573612db3f78feae433d324b4b141f77559d246",
+  "gitCommitMessage": "chore: link to new EAS project (windsurf29)",
+  "priority": "NORMAL_PLUS",
+  "createdAt": "2026-09-12T23:28:05.903Z",
+  "updatedAt": "2026-09-12T23:28:19.661Z",
+  "completedAt": "2026-09-12T23:28:19.497Z",
+  "expirationDate": "2026-09-26T23:28:05.937Z",
+  "isForIosSimulator": false,
+  "metrics": {
+    "buildWaitTime": 318,
+    "buildQueueTime": 4654,
+    "buildDuration": 8622
+  }
+}
