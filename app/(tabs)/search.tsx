@@ -1,18 +1,37 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, SafeAreaView, StyleSheet, StatusBar, TextInput } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, SafeAreaView, StyleSheet, StatusBar, TextInput, ActivityIndicator } from 'react-native';
 import { Icon } from '../../src/components/ui/Icon';
 import { COLORS, FONTS } from '../../src/theme/theme';
 import { audioService } from '../../src/audio/AudioService';
 import { getActiveProvider } from '../../src/providers/registry';
-
-const MATCHES = [
-  { id: '1', title: 'PARANOID ANDROID', artist: 'RADIOHEAD // OK COMPUTER (1997)', time: '06:27', bias: 'TYPE II CrO2', color: COLORS.secondaryFixed, shelf: 'SHELF 04 // BAY 12' },
-  { id: '2', title: 'KARMA POLICE', artist: 'RADIOHEAD // OK COMPUTER', time: '04:21', bias: 'TYPE I FERRIC', color: COLORS.outline },
-  { id: '3', title: 'NO SURPRISES', artist: 'RADIOHEAD // OK COMPUTER', time: '03:48', bias: 'TYPE II CrO2', color: COLORS.secondaryFixed },
-];
+import { Track } from '../../src/providers/types';
+import { formatDurationMs } from '../../src/utils/formatting';
 
 export default function SearchScreen() {
   const [search, setSearch] = useState('');
+  const [results, setResults] = useState<Track[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [error, setError] = useState('');
+
+  const executeSearch = async (query: string) => {
+    if (!query.trim()) {
+      setResults([]);
+      return;
+    }
+    
+    setIsSearching(true);
+    setError('');
+    
+    try {
+      const provider = getActiveProvider();
+      const tracks = await provider.search(query);
+      setResults(tracks);
+    } catch (err: any) {
+      setError(err.message || 'Search failed');
+    } finally {
+      setIsSearching(false);
+    }
+  };
 
   return (
     <SafeAreaView style={s.container}>
@@ -44,10 +63,12 @@ export default function SearchScreen() {
               style={s.searchInput} 
               value={search} 
               onChangeText={setSearch} 
+              onSubmitEditing={() => executeSearch(search)}
               placeholderTextColor={COLORS.outline} 
               placeholder="Type track title, artist..."
+              returnKeyType="search"
             />
-            <TouchableOpacity style={s.clearBtn} onPress={() => setSearch('')}>
+            <TouchableOpacity style={s.clearBtn} onPress={() => { setSearch(''); setResults([]); }}>
               <Text style={s.clearTxt}>CLR</Text>
               <Icon name="close" size={14} color={COLORS.outlineVariant} />
             </TouchableOpacity>
@@ -64,53 +85,50 @@ export default function SearchScreen() {
           ))}
         </ScrollView>
 
-        {/* Recent Queries */}
-        <View style={s.recentBox}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
-            <Text style={s.recentLabel}>RECENT TAPE DRAWER QUERIES</Text>
-            <Text style={s.recentCount}>4 LOGS</Text>
-          </View>
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-            {['Radiohead', 'Type IV Metal Tapes', 'Ambient 1984', 'Bowie A-Sides'].map((q, i) => (
-              <View key={i} style={s.queryChip}>
-                <Text style={[s.queryTxt, i === 1 && { color: COLORS.secondary }]}>{q}</Text>
-                <Icon name="close" size={13} color={COLORS.outline} />
-              </View>
-            ))}
-          </View>
-        </View>
-
         {/* Matches */}
         <View style={s.section}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
             <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
               <Text style={s.sectionTitle}>TRACK CASSETTES MATCHED</Text>
-              <View style={s.countBadge}><Text style={s.countTxt}>3 FOUND</Text></View>
+              <View style={s.countBadge}><Text style={s.countTxt}>{isSearching ? '...' : `${results.length} FOUND`}</Text></View>
             </View>
             <Text style={s.autoAzimuth}>AUTO-AZIMUTH OK</Text>
           </View>
 
-          {MATCHES.map((m, i) => (
-            <View key={i} style={s.matchCard}>
+          {isSearching && (
+            <View style={{ padding: 24, alignItems: 'center' }}>
+              <ActivityIndicator size="small" color={COLORS.secondary} />
+              <Text style={{ marginTop: 8, fontFamily: FONTS.mono, color: COLORS.onSurfaceVariant }}>SCANNING CATALOG...</Text>
+            </View>
+          )}
+
+          {!isSearching && error ? (
+            <View style={{ padding: 24, alignItems: 'center' }}>
+              <Text style={{ fontFamily: FONTS.mono, color: COLORS.error }}>{error}</Text>
+            </View>
+          ) : null}
+
+          {!isSearching && results.map((m, i) => (
+            <View key={m.id} style={s.matchCard}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center', flex: 1 }}>
-                  <View style={[s.matchColor, { backgroundColor: m.color }]} />
+                  <View style={[s.matchColor, { backgroundColor: i % 2 === 0 ? COLORS.secondaryFixed : COLORS.outline }]} />
                   <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
-                      <Text style={s.matchNum}>A-0{i+1}</Text>
+                      <Text style={s.matchNum}>A-{(i+1).toString().padStart(2, '0')}</Text>
                       <Text style={s.matchTitle} numberOfLines={1}>{m.title}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', gap: 6, alignItems: 'center' }}>
                       <Text style={s.matchSub} numberOfLines={1}>{m.artist}</Text>
                       <Text style={{ color: COLORS.outline, fontSize: 10 }}>•</Text>
-                      <Text style={s.matchBias}>{m.bias}</Text>
+                      <Text style={s.matchBias}>{m.album || 'TYPE II CrO2'}</Text>
                     </View>
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
-                  <Text style={s.matchTime}>{m.time}</Text>
+                  <Text style={s.matchTime}>{m.durationMs ? formatDurationMs(m.durationMs) : '--:--'}</Text>
                   <TouchableOpacity style={s.loadBtn} onPress={() => {
-                    audioService.playTrack({ id: m.id, title: m.title, artist: m.artist });
+                    audioService.playTrack({ id: m.id, title: m.title, artist: m.artist, album: m.album, durationMs: m.durationMs });
                   }}><Icon name="download" size={13} color={COLORS.onPrimary} /><Text style={s.loadBtnTxt}>LOAD</Text></TouchableOpacity>
                 </View>
               </View>
@@ -118,7 +136,7 @@ export default function SearchScreen() {
                 <View style={{ flexDirection: 'row', gap: 6, alignItems: 'center' }}>
                   <View style={s.smallCircle} /><View style={s.bridgeLine} /><View style={s.smallCircle} />
                 </View>
-                <Text style={s.shelfLoc}>{m.shelf}</Text>
+                <Text style={s.shelfLoc}>SHELF {Math.floor(i / 10).toString().padStart(2, '0')} // BAY {(i % 10).toString().padStart(2, '0')}</Text>
               </View>
             </View>
           ))}

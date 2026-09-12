@@ -154,7 +154,7 @@ export default function NowPlayingModal() {
               <View style={s.progressTimeRow}>
                 <Text style={s.progressTime}>{formatDurationMs(positionMs)}</Text>
                 <Text style={s.progressMeta}>TAPE SPOOL PROGRESS</Text>
-                <Text style={s.progressTime}>{streamInfo?.isLive ? 'LIVE' : `-${formatDurationMs(durationMs - positionMs)}`}</Text>
+                <Text style={s.progressTime}>-{formatDurationMs(durationMs - positionMs)}</Text>
               </View>
             </View>
           </View>

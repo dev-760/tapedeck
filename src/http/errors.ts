@@ -21,12 +21,7 @@ export class TimeoutError extends AppError {
   }
 }
 
-export class ProviderError extends AppError {
-  constructor(message: string, public providerId: string) {
-    super(message, 'PROVIDER_ERROR');
-    this.name = 'ProviderError';
-  }
-}
+
 
 export class ParseError extends AppError {
   constructor(message: string) {

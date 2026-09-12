@@ -1,10 +1,9 @@
 import { create } from 'zustand';
-import { Track, StreamInfo, ProviderId } from '../providers/types';
+import { Track, StreamInfo } from '../providers/types';
 
 interface PlaybackState {
   currentTrack: Track | null;
   streamInfo: StreamInfo | null;
-  activeProviderId: ProviderId | null;
   isPlaying: boolean;
   isLoading: boolean;
   error: string | null;
@@ -12,7 +11,7 @@ interface PlaybackState {
   durationMs: number;
   
   setCurrentTrack: (track: Track | null) => void;
-  setStreamInfo: (stream: StreamInfo | null, providerId: ProviderId | null) => void;
+  setStreamInfo: (stream: StreamInfo | null) => void;
   setPlaying: (playing: boolean) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
@@ -22,7 +21,6 @@ interface PlaybackState {
 export const usePlaybackStore = create<PlaybackState>((set) => ({
   currentTrack: null,
   streamInfo: null,
-  activeProviderId: null,
   isPlaying: false,
   isLoading: false,
   error: null,
@@ -30,7 +28,7 @@ export const usePlaybackStore = create<PlaybackState>((set) => ({
   durationMs: 0,
   
   setCurrentTrack: (track) => set({ currentTrack: track, positionMs: 0 }),
-  setStreamInfo: (streamInfo, activeProviderId) => set({ streamInfo, activeProviderId }),
+  setStreamInfo: (streamInfo) => set({ streamInfo }),
   setPlaying: (isPlaying) => set({ isPlaying }),
   setLoading: (isLoading) => set({ isLoading }),
   setError: (error) => set({ error }),

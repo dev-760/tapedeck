@@ -1,103 +1,41 @@
-# TapeDeck
+# TapeDeck V2 📼
 
-TapeDeck is a production-quality, cross-platform mobile music player focused on high-quality streaming (FLAC/lossless) with a rich, tactile cassette-deck and vintage Sony Walkman-inspired visual identity. Built with React Native, Expo, and strict TypeScript.
+Welcome to **TapeDeck V2**, a premium, cassette-themed music player for React Native/Expo. TapeDeck brings back the mechanical joy of physical media, combined with a highly modern, extensible streaming backend powered by QuickJS and WebAssembly.
 
-## Architecture
+## Documentation Index
 
-TapeDeck employs a layered architecture separating UI, State, Audio Playback, and Provider selection:
+- [API Documentation](API.md) - Internal interfaces, provider abstractions, and state stores.
+- [Architecture Overview](Architecture.md) - System design, sandboxing, and data flow.
+- [Design Philosophy](Design.md) - UI/UX principles, brutalist aesthetics, and typography.
+- [Handover Status](Handover.md) - Current project state, recent completions, and future roadmap.
 
-```mermaid
-flowchart TD
-    UI["Expo Router / UI"] <--> State["Zustand Stores (playback, settings, logs)"]
-    State <--> Audio["AudioService (Singleton)"]
-    Audio --> TrackPlayer["react-native-track-player (Native)"]
-    Audio --> ExpoAudio["expo-audio (Expo Go Fallback)"]
-    State <--> Providers["Provider Registry"]
-    Providers --> Spotiflac["SpotiFLAC (Search & Stream)"]
-    Providers --> OctoFiesta["OctoFiesta (Search & Stream)"]
-    Providers --> RadioParadise["Radio Paradise (Live Stream)"]
-```
+## Features
 
-## Prerequisites
+* **Skeuomorphic Walkman UI:** A fully animated cassette deck interface that reacts to playback state, spool speeds, and duration.
+* **Curated Mixtapes:** Organize your tracks into custom "Mixtapes" in the Vault, saved locally.
+* **Extensible Provider System (SpotiFLAC):** Connects to external audio sources (like Tidal/Qobuz) using sandboxed JavaScript plugins.
+* **Audiophile Controls:** Mechanical auto-reverse toggles, bias adjustments, and VU meter visualization (simulated).
 
-- Node.js >= 18
-- npm or yarn
-- Expo CLI (`npm install -g expo-cli`)
-- iOS Simulator or Android Emulator (for development builds)
+## Tech Stack
 
-## Installation
+* **Framework:** React Native / Expo Router
+* **State Management:** Zustand
+* **Audio Engine:** `react-native-track-player`
+* **Sandbox Runtime:** `quickjs-emscripten` (WebAssembly)
+* **Crypto:** `react-native-quick-crypto` (JSI/C++)
+* **Styling:** React Native StyleSheet (Google Fonts: Space Grotesk & Courier Prime)
 
-1. Clone the repository
-2. Install dependencies:
+## Getting Started
+
+1. **Install dependencies:**
    ```bash
-   npm install --legacy-peer-deps
-   ```
-   *(Note: Due to the complexity of native audio dependencies, use legacy-peer-deps if you encounter resolution issues).*
-
-3. Start the application:
-   ```bash
-   npx expo start
+   npm install
    ```
 
-### Expo Go vs Development Builds
+2. **Start the Expo development server:**
+   ```bash
+   npm start
+   ```
 
-TapeDeck utilizes `react-native-track-player` for robust background audio and lock screen controls. This requires a **custom development build**:
-
-```bash
-# Android
-npx expo run:android
-
-# iOS
-npx expo run:ios
-```
-
-**Expo Go Limitations:**
-When running in Expo Go, TapeDeck automatically detects the environment and falls back to `expo-audio`. Features like background playback, FLAC gapless transition, and lock screen controls will be unavailable.
-
-## Provider Configuration
-
-TapeDeck supports multiple dynamic audio providers:
-
-1. **SpotiFLAC** (Default): Mirror pool resolution.
-2. **OctoFiesta**: Configurable REST API. You can set the base URL in the Developer Options or via `.env`.
-3. **Radio Paradise**: Live FLAC streams.
-
-Copy `.env.example` to `.env` to set default provider configurations.
-
-## Developer Options Guide
-
-TapeDeck includes a built-in diagnostic and developer suite. 
-
-To access it:
-1. Navigate to the **Settings** tab.
-2. Select the **BENCH** (Maintenance) sub-tab.
-3. Tap **OPEN DEVELOPER OPTIONS**.
-
-Features available:
-- **Active Provider Selection**: Force the app to use a specific provider for testing.
-- **Global Behavior**: Toggle Verbose Logging and Auto-Fallback features.
-- **Provider Overrides**: Inject custom URLs for OctoFiesta.
-- **Diagnostics**: Test all providers concurrently to check latency and health.
-- **Report Export**: Generate a sanitized JSON telemetry report for debugging.
-- **Log Preview**: View the in-memory ring-buffered logs directly in the UI.
-
-## Testing Commands
-
-TapeDeck uses Jest and React Native Testing Library. Run the test suite via:
-
-```bash
-npm run test
-```
-
-For linting and TypeScript validation:
-
-```bash
-npm run lint
-npx tsc --noEmit
-```
-
-## Known Limitations
-
-- **FLAC Support**: FLAC playback is highly dependent on the OS and the backend. `react-native-track-player` fully supports it, but `expo-audio` might have inconsistent behavior on certain older Android models.
-- **Queue/Library**: The current v1 scope focuses on core playback, live tuning, and search. Extended library features (mixtapes, shelves) are slated for future releases.
-- **Search Pagination**: Archive search currently returns the top 50 results. Infinite scrolling is a planned enhancement.
+3. **Run on iOS/Android:**
+   Use the Expo Go app or build a development client to test the native modules (`react-native-quick-crypto`, `track-player`).

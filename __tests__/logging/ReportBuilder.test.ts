@@ -1,7 +1,6 @@
 import { ReportBuilder } from '../../src/logging/ReportBuilder';
 import { useLogStore } from '../../src/store/logStore';
 import { useSettingsStore } from '../../src/store/settingsStore';
-import { PROVIDERS } from '../../src/providers/registry';
 
 jest.mock('../../src/store/logStore', () => ({
   useLogStore: {
@@ -15,14 +14,6 @@ jest.mock('../../src/store/settingsStore', () => ({
   },
 }));
 
-jest.mock('../../src/providers/registry', () => ({
-  PROVIDERS: {
-    spotiflac: { getHealth: jest.fn().mockResolvedValue({ status: 'healthy', latencyMs: 50 }) },
-    octofiesta: { getHealth: jest.fn().mockResolvedValue({ status: 'offline', message: 'Down' }) },
-    radioparadise: { getHealth: jest.fn().mockResolvedValue({ status: 'healthy' }) },
-  }
-}));
-
 describe('ReportBuilder', () => {
   it('should generate sanitized report', async () => {
     (useLogStore.getState as jest.Mock).mockReturnValue({
@@ -33,17 +24,13 @@ describe('ReportBuilder', () => {
     });
     
     (useSettingsStore.getState as jest.Mock).mockReturnValue({
-      activeProviderId: 'spotiflac',
-      autoFallback: true,
       verboseLogging: false
     });
 
     const report = await ReportBuilder.buildReport();
     
     expect(report.schemaVersion).toBe('1.0.0');
-    expect(report.settings.activeProviderId).toBe('spotiflac');
-    expect(report.providerHealth.spotiflac?.status).toBe('healthy');
-    expect(report.providerHealth.octofiesta?.status).toBe('offline');
+    expect(report.settings.verboseLogging).toBe(false);
     
     // Check sanitization
     expect(report.logs[0].message).toBe('Normal log');

@@ -1,0 +1,19 @@
+The field "cli.appVersionSource" is not set, but it will be required in the future. Learn more: https://docs.expo.dev/build-reference/app-versions/
+Resolved "production" environment for the build. Learn more: https://docs.expo.dev/eas/environment-variables/#setting-the-environment-for-your-builds
+No environment variables with visibility "Plain text" and "Sensitive" found for the "production" environment on EAS.
+
+
+
+The field "cli.appVersionSource" is not set, but it will be required in the future. Learn more: https://docs.expo.dev/build-reference/app-versions/
+Γ£ö Using remote Android credentials (Expo server)
+Γ£ö Using Keystore from configuration: Build Credentials qfW1IyVBot (default)
+
+Compressing project files and uploading to EAS Build. Learn more: https://expo.fyi/eas-build-archive
+- Compressing project files
+- Uploading to EAS Build (0 / 3.3 MB)
+Γ£ö Uploaded to EAS 1s
+
+See logs: https://expo.dev/accounts/dev760/projects/tapedeck/builds/8d4a2147-b3eb-4ff3-b04a-0c23e224d9f3
+
+Waiting for build to complete. You can press Ctrl+C to exit.
+- Waiting for build to complete.

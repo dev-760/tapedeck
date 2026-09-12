@@ -41,10 +41,10 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name="live"
+          name="library"
           options={{
-            title: 'Live',
-            tabBarIcon: ({ color }) => <Icon name="radio" color={color} size={24} />,
+            title: 'Library',
+            tabBarIcon: ({ color }) => <Icon name="library" color={color} size={24} />,
           }}
         />
         <Tabs.Screen

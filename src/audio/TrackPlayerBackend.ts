@@ -47,7 +47,6 @@ export class TrackPlayerBackend implements AudioBackend {
       url: stream.url,
       title: 'TapeDeck Audio', // Updated later via metadata sync
       artist: 'TapeDeck',
-      isLiveStream: stream.isLive,
     });
     
     await TrackPlayer.play();
@@ -83,8 +82,8 @@ export class TrackPlayerBackend implements AudioBackend {
     await TrackPlayer.setVolume(volume);
   }
 
-  supportsSeek(stream: StreamInfo): boolean {
-    return !stream.isLive;
+  supportsSeek(_stream: StreamInfo): boolean {
+    return true;
   }
 
   async dispose(): Promise<void> {

@@ -1,9 +1,8 @@
-export type ProviderId = 'spotiflac' | 'octofiesta' | 'radioparadise';
+export type ProviderId = string;
 
 export interface StreamInfo {
   url: string;
   format: 'flac' | 'mp3' | 'aac' | 'unknown';
-  isLive?: boolean;
 }
 
 export interface Track {
@@ -12,7 +11,7 @@ export interface Track {
   artist: string;
   album?: string;
   durationMs?: number;
-  artworkUrl?: string;
+  coverUrl?: string; // Using coverUrl as used in the guide adapter
 }
 
 export interface ProviderHealth {
@@ -29,7 +28,9 @@ export interface MusicProvider {
     stream: boolean;
     live: boolean;
   };
+  initialize?: (code: string) => Promise<void>;
   search(query: string, abortSignal?: AbortSignal): Promise<Track[]>;
   getStreamInfo(trackId: string, abortSignal?: AbortSignal): Promise<StreamInfo>;
   getHealth(): Promise<ProviderHealth>;
+  dispose?: () => void;
 }

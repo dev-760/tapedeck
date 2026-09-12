@@ -1,17 +1,18 @@
 import { AudioBackend } from './AudioBackend';
 import { ExpoAudioBackend } from './ExpoAudioBackend';
 import { TrackPlayerBackend } from './TrackPlayerBackend';
-import { IS_EXPO_GO } from '../utils/platform';
-import { resolveStreamWithFallback } from '../providers/providerUtils';
 import { usePlaybackStore } from '../store/playbackStore';
 import { logger } from '../logging/Logger';
-import { Track } from '../providers/types';
+import { Track, StreamInfo } from '../providers/types';
+import { getActiveProvider } from '../providers/registry';
 
 class AudioService {
   private backend: AudioBackend;
 
   constructor() {
-    this.backend = IS_EXPO_GO ? new ExpoAudioBackend() : new TrackPlayerBackend();
+    // Always use TrackPlayerBackend for production builds
+    // ExpoAudioBackend is only for Expo Go development
+    this.backend = new TrackPlayerBackend();
   }
 
   async init() {
@@ -24,11 +25,12 @@ class AudioService {
     store.setCurrentTrack(track);
 
     try {
-      logger.info('AudioService', `Resolving stream for track: ${track.id}`);
-      const { streamInfo, providerId } = await resolveStreamWithFallback(track.id);
+      logger.info('AudioService', `Playing track: ${track.id}`);
       
-      store.setStreamInfo(streamInfo, providerId);
-      logger.info('AudioService', `Playing stream from ${providerId} (${streamInfo.format})`);
+      const provider = getActiveProvider();
+      const streamInfo = await provider.getStreamInfo(track.id);
+      
+      store.setStreamInfo(streamInfo);
       
       await this.backend.play(streamInfo, track.id);
       store.setPlaying(true);
