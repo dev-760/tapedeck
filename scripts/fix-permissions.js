@@ -9,7 +9,19 @@ if(fs.existsSync(file)) {
 const tpFile = 'node_modules/react-native-track-player/android/src/main/java/com/doublesymmetry/trackplayer/HeadlessJsMediaService.java';
 if(fs.existsSync(tpFile)) {
   let tpContent = fs.readFileSync(tpFile, 'utf8');
-  tpContent = tpContent.replace(/reactHost\.addReactInstanceEventListener\([\s\S]*?reactHost\.removeReactInstanceEventListener\(this\);\s*\}\s*\}\s*\);/m, '/* removed ReactHost listener for RN 0.74 */');
+  tpContent = tpContent.replace(/reactHost\.addReactInstanceEventListener\([\s\S]*?reactHost\.removeReactInstanceEventListener\(this\);\s*\}\s*\}\s*\);/m, `new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            ReactContext rc = reactHost.getCurrentReactContext();
+                            while(rc == null) {
+                                Thread.sleep(50);
+                                rc = reactHost.getCurrentReactContext();
+                            }
+                            invokeStartTask(rc, taskConfig);
+                        } catch (Exception e) {}
+                    }
+                }).start();`);
   fs.writeFileSync(tpFile, tpContent);
 }
 
