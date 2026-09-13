@@ -1,0 +1,41 @@
+[
+  {
+    "id": "603bdc37-d153-47b9-8708-c85eba2f72ff",
+    "status": "IN_PROGRESS",
+    "platform": "ANDROID",
+    "artifacts": {},
+    "fingerprint": {
+      "id": "01a09868-842a-7f44-b578-61f90028a3d3",
+      "hash": "9f0d58e6aefbc4ee0a49d5842e18caa1cf8e7531"
+    },
+    "initiatingActor": {
+      "id": "4c8ba5c1-673a-48a7-bda1-398c1890ee0b",
+      "displayName": "windsurf29"
+    },
+    "logFiles": [
+      "https://storage.googleapis.com/eas-workflows-production/logs/13a5257b-72fd-495c-80bb-fd7c8a80b337/603bdc37-d153-47b9-8708-c85eba2f72ff/2026-09-13T01%3A36%3A26Z-845018c8-64aa-4c87-8541-d27b0aa66830.txt?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=www-production%40exponentjs.iam.gserviceaccount.com%2F20260913%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260913T013751Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=554d162cb7dc0a8a5aef2ead0c09f45359166b82df64ebc8b85b51d2a2828369fb58c7b3584718abfc181ea40447a612eecdd7ae76e917c3023f1c69485acb2830613fe5103982620bcca7b7cd20f24d4ac21163fdbd80ec378d315ef92c72d437db02ca2faaed8bfaaf2fc299dcd2364870f6c4863dbd3e1cbb2a6afa9d5b1b1c3242280178341804dd456510ce3ad2465f2fa5aa11fd78276f37cf5ec87da1a133b7b9d2fbb2a69b52220e31467a7f2f797e0532ff37e281380528781fbeab31e373c9a14d059abf6c0ee2dcc6696b3e22ced04915533462e110c520ab64ca90014fdd3bd4eff4459285c0720594dee807b41f5ed5ea2006fa953a76b94c79"
+    ],
+    "app": {
+      "id": "13a5257b-72fd-495c-80bb-fd7c8a80b337",
+      "name": "tapedeck",
+      "slug": "tapedeck",
+      "ownerAccount": {
+        "id": "d4d6dec5-860b-4787-b75f-65595fca2e6b",
+        "name": "windsurf29"
+      }
+    },
+    "distribution": "INTERNAL",
+    "buildProfile": "preview",
+    "appIdentifier": "com.tapedeck.app",
+    "sdkVersion": "57.0.0",
+    "appVersion": "0.1.0",
+    "appBuildVersion": "1",
+    "gitCommitHash": "1fc23430b9de3509916db8d15bb87544fb38e613",
+    "gitCommitMessage": "fix: exhaustive typescript and dependency fixes",
+    "priority": "NORMAL_PLUS",
+    "createdAt": "2026-09-13T01:36:21.494Z",
+    "updatedAt": "2026-09-13T01:36:30.766Z",
+    "expirationDate": "2026-09-27T01:36:21.536Z",
+    "isForIosSimulator": false
+  }
+]

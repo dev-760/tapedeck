@@ -1,5 +1,5 @@
 {
-  "id": "77bddef4-590b-4bd6-a299-91ac51d0ec5c",
+  "id": "093626e7-4253-4ead-b6f9-492bb7ea0712",
   "status": "ERRORED",
   "platform": "ANDROID",
   "error": {
@@ -8,15 +8,15 @@
   },
   "artifacts": {},
   "fingerprint": {
-    "id": "01a0980c-690c-7ffe-a811-039df4197528",
-    "hash": "809adb32fb0db25089bc8cc1f0cbd6e92ddacc5c"
+    "id": "01a0983e-d9a4-7d93-96b6-65f13da60194",
+    "hash": "2c3de6f290d24c6fb30f76420c03ea50961075b7"
   },
   "initiatingActor": {
     "id": "4c8ba5c1-673a-48a7-bda1-398c1890ee0b",
     "displayName": "windsurf29"
   },
   "logFiles": [
-    "https://storage.googleapis.com/eas-workflows-production/logs/13a5257b-72fd-495c-80bb-fd7c8a80b337/77bddef4-590b-4bd6-a299-91ac51d0ec5c/2026-09-12T23%3A55%3A46Z-721eb7db-6372-4dd0-97be-51afbaf8108e.txt?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=www-production%40exponentjs.iam.gserviceaccount.com%2F20260913%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260913T002237Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=458387708dea2a6e57702369629413b999773f6bd7ab7e93661199bff59eff5a8dd5d8556d5127f764c156416a3446d71e6aaf10e70173ce66475e092ecbe1affdf541ff2eeb6aab88eb5959172fca1cbd01a5b6f3a50a85f76e2511654ac8867d12b0ec2c9656750bb733972f70ac631c3e335804309da8e6dc68d912492daad78e2908e5c603d0957c163ec98b8d0b30a99c1326aa32bcc182a2f2db50f637591313838bf17c4a72c0d303851543946329f8bca9a422a70eedda70ddd0ef05b4da2fbbb2068275017437fbf0cc78e98a9226af75aabdcb3eef1784e764f9ab3d1e60bd77a29bb004a4434251440a26a77877c5511369266ae4395b9263ab2a"
+    "https://storage.googleapis.com/eas-workflows-production/logs/13a5257b-72fd-495c-80bb-fd7c8a80b337/093626e7-4253-4ead-b6f9-492bb7ea0712/2026-09-13T00%3A50%3A51Z-86fcfca9-1621-473f-b7f3-8ab0c8eb8629.txt?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=www-production%40exponentjs.iam.gserviceaccount.com%2F20260913%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260913T012428Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=2c2815e4bc2cd0f3382c5b1c9cf570266c59b09f4bdfe51461e33b6a4c32a7298ecf2e417ae82f612af75f6a1ee4700d8b63eaf439c3d95cecb6882dbf601be39fe421c44cf0204beb590d3058def8df1435399760798aee777dbd027a779835d027840d3cedb53d488c1b4746e50a8a81c1771efd097e0082812b7fba475a16db5f3778e865483f5eb2b0b2aef24611bb4619b7a9b20922cb4e7efa0e34535c108574176929af1a8a52ffcb9e7377730be588d6126afada36c9315e5f3d0245f4da145a2034376d08f36e5a7cd901dba646ff851411dbf47fc189084025ab538cc88437e3e6d6162b338ac550cc00ad128ffa8464691ce206776d456cab4707"
   ],
   "app": {
     "id": "13a5257b-72fd-495c-80bb-fd7c8a80b337",
@@ -33,17 +33,17 @@
   "sdkVersion": "57.0.0",
   "appVersion": "0.1.0",
   "appBuildVersion": "1",
-  "gitCommitHash": "a2a2de5e9df2636ece779ec52dba7374146956cb",
-  "gitCommitMessage": "Add eas_build_log.txt to capture build error details for missing keys",
+  "gitCommitHash": "1fc23430b9de3509916db8d15bb87544fb38e613",
+  "gitCommitMessage": "fix: exhaustive typescript and dependency fixes",
   "priority": "NORMAL_PLUS",
-  "createdAt": "2026-09-12T23:55:45.244Z",
-  "updatedAt": "2026-09-13T00:23:56.245Z",
-  "completedAt": "2026-09-13T00:23:56.006Z",
-  "expirationDate": "2026-09-26T23:55:45.283Z",
+  "createdAt": "2026-09-13T00:50:50.868Z",
+  "updatedAt": "2026-09-13T01:20:49.283Z",
+  "completedAt": "2026-09-13T01:20:49.068Z",
+  "expirationDate": "2026-09-27T00:50:50.905Z",
   "isForIosSimulator": false,
   "metrics": {
-    "buildWaitTime": 1027,
-    "buildQueueTime": 4614,
-    "buildDuration": 1685121
+    "buildWaitTime": 320,
+    "buildQueueTime": 4424,
+    "buildDuration": 1793456
   }
 }
