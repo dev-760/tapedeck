@@ -5,7 +5,7 @@ import { COLORS } from '../../theme/theme';
 interface IconProps {
   name: React.ComponentProps<typeof Ionicons>['name'];
   size?: number;
-  color?: string;
+  color?: string | any;
   style?: any;
 }
 

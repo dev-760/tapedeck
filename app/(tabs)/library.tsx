@@ -51,7 +51,7 @@ export default function LibraryScreen() {
           {data.map((item, idx) => (
             <TouchableOpacity 
               key={idx} 
-              style={[s.spineCard, { backgroundColor: item.color, height: item.active ? 208 : 192, transform: [{ translateY: item.active ? -16 : 0 }] }]}
+              style={[s.spineCard, { backgroundColor: item.color, height: (item as any).active ? 208 : 192, transform: [{ translateY: (item as any).active ? -16 : 0 }] }]}
               onPress={() => handlePlayTape(item)}
             >
               <View style={s.spineTop}>
@@ -179,7 +179,7 @@ const s = StyleSheet.create({
   filterBtn: { backgroundColor: COLORS.surfaceContainer, paddingHorizontal: 10, paddingVertical: 4, borderRadius: 4 },
   filterTxt: { fontFamily: FONTS.displayBold, fontSize: 10, color: COLORS.onSurfaceVariant, textTransform: 'uppercase' },
   infoBanner: { flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: COLORS.primaryContainer, marginHorizontal: 12, marginTop: 8, padding: 10, borderRadius: 8 },
-  infoBannerTxt: { flex: 1, fontFamily: FONTS.mono, fontSize: 13, color: COLORS.onPrimaryContainer },
+  infoBannerTxt: { flex: 1, fontFamily: FONTS.mono, fontSize: 13, color: COLORS.primary },
   infoBannerSub: { fontFamily: FONTS.monoBold, fontSize: 13, color: COLORS.tertiary },
   shelvingUnit: { backgroundColor: COLORS.surfaceContainerLowest, marginHorizontal: 12, marginTop: 12, padding: 8, borderRadius: 12, gap: 24, shadowColor: '#000', shadowOpacity: 0.8, shadowRadius: 12, elevation: 8 },
   shelfSection: { gap: 4 },

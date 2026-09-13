@@ -60,6 +60,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   experiments: {
     typedRoutes: true,
   },
+  // @ts-ignore - newArchEnabled is supported by Expo SDK 51+
   newArchEnabled: false,
   extra: {
     eas: {

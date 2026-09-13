@@ -1,5 +1,5 @@
 import TrackPlayer, { 
-  AppKilledBehavior, 
+  AppKilledPlaybackBehavior, 
   Capability, 
 } from 'react-native-track-player';
 import { AudioBackend } from './AudioBackend';
@@ -17,7 +17,7 @@ export class TrackPlayerBackend implements AudioBackend {
       });
       await TrackPlayer.updateOptions({
         android: {
-          appKilledBehavior: AppKilledBehavior.StopPlaybackAndRemoveNotification,
+          appKilledPlaybackBehavior: AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
         },
         capabilities: [
           Capability.Play,
@@ -25,11 +25,7 @@ export class TrackPlayerBackend implements AudioBackend {
           Capability.Stop,
           Capability.SeekTo,
         ],
-        compactCapabilities: [
-          Capability.Play,
-          Capability.Pause,
-          Capability.Stop,
-        ],
+        
       });
       this.isInitialized = true;
       logger.info('TrackPlayerBackend', 'Initialized TrackPlayer');

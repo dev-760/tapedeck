@@ -148,7 +148,7 @@ export default function HomeScreen() {
               </TouchableOpacity>
 
               <TouchableOpacity style={s.ctrlBtn} onPress={() => audioService.stop()}>
-                <Icon name="eject" size={18} color={COLORS.onSurface} />
+                <Icon name="close-circle" size={18} color={COLORS.onSurface} />
                 <Text style={s.ctrlBtnTxt}>EJECT</Text>
               </TouchableOpacity>
             </View>

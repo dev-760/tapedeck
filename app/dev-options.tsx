@@ -10,7 +10,7 @@ import { ReportBuilder } from '../src/logging/ReportBuilder';
 export default function DevOptionsScreen() {
   const router = useRouter();
   const settings = useSettingsStore();
-  const logs = useLogStore(state => state.logs);
+  const logs = useLogStore(state => state.entries);
   const clearLogs = useLogStore(state => state.clearLogs);
 
   const handleExport = async () => {
